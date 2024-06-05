@@ -38,12 +38,12 @@ class ItemRepositoryTest {
         for(int i = 1; i <= 10; i++) {
             Item item = new Item();
             item.setName("테스트 상품" + i);
-            item.setPrice(10000);
+            item.setPrice(10000 + i);
             item.setDescription("테스트 상품 상세 설명" + i);
             item.setQuantity(100 + i);
             item.setStatus("Selling");
             item.setRegisterDate(LocalDateTime.now());
-            repository.save(item);
+            Item save = repository.save(item);
         }
     }
     @Test
@@ -52,5 +52,42 @@ class ItemRepositoryTest {
         createItemList();
         List<Item> itemList = repository.findByNameIsContainingIgnoreCase("상품1");
         assertEquals(2, itemList.size());
+    }
+
+    @Test
+    @DisplayName("상품명과 상품상세설명 에 대한 or 테스트")
+    void findByNameOrDescriptionTest() {
+        createItemList();
+        List<Item> itemList = repository.findByNameOrDescription("테스트 상품1", "테스트 상품 상세 설명7");
+        assertEquals(2, itemList.size());
+        System.out.println("조회된 데이터");
+        itemList.forEach(System.out::println);
+    }
+
+    @Test
+    @DisplayName("가격 Less Than 테스트")
+    void findByPriceLessThanTest() {
+        createItemList();
+        List<Item> itemList = repository.findByPriceLessThan(10005);
+        assertEquals(4, itemList.size());
+        itemList.forEach(System.out::println);
+    }
+
+    @Test
+    @DisplayName("가격 Less than 내림차순 정렬 테스트")
+    void findByPriceGreaterThanOrderByPriceDescTest() {
+        createItemList();
+        List<Item> itemList = repository.findByPriceGreaterThanOrderByPriceDesc(10005);
+        itemList.forEach(System.out::println);
+        assertEquals(5, itemList.size());
+    }
+
+    @Test
+    @DisplayName("@Query를 이용한 상품 조회 테스트")
+    void findByDescriptionTest() {
+        createItemList();
+        List<Item> itemList = repository.findByDescription("테스트 상품 상세 설명");
+        itemList.forEach(System.out::println);
+        assertEquals(10, itemList.size());
     }
 }

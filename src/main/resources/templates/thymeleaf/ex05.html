@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>링크</title>
+</head>
+<body>
+<!--hyper text : 글자에 기능이 들어가있는 것-->
+<a th:href="@{/thymeleaf/ex01}">예제 1로 이동</a>
+<br>
+<a th:href="@{/}">홈으로 이동</a>
+<br>
+<a th:href="@{https://www.thymeleaf.org}" target="_blank">타임리프 공식 홈페이지로 이동</a>
+<!--
+http의 url 규칙
+?부터 query string
+name, age를 보낸다고 가정
+name과 age를 연결하는 문자는 &
+프로토콜://주소:포트번호/경로/자원위치?name=abc&age=10
+-->
+<br>
+<a href="/thymeleaf/ex06?name=박도현&age=24&">파라미터 전달 : 일반 방식</a>
+<div>
+    <a th:href="@{/thymeleaf/ex06(name='박도현',age=24)}">파라미터 전달 : 타임리프 방식</a>
+</div>
+</body>
+</html>

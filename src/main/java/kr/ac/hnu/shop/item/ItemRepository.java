@@ -32,7 +32,5 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     // select * from item where description like '%?%' order by price desc
     @Query("select i from Item i where i.description like %:description% order by i.price desc")
     List<Item> findByDescription(@Param("description") String description);
-
-
 }
 

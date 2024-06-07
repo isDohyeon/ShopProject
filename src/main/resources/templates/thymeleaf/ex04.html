@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h1>상품 리스트 출력 예제</h1>
+  <table>
+    <thead>
+    <tr>
+      <th>순번</th>
+      <th>상품명</th>
+      <th>상품설명</th>
+      <th>가격</th>
+      <th>상품등록일</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- 향상된 for문
+        for (ItemDTO item : items) {
+            itam.name
+        } -->
+    <tr th:each="item, status: ${items}">
+      <td th:if="${status.even}" th:text="짝수">0</td> <!-- 짝수면 -->
+      <td th:unless="${status.even}" th:text="${status.count}">0</td>
+      <td th:text="${item.name}">상품명</td>
+      <td th:text="${item.description}">상품설명</td>
+      <td th:text="${item.price}">10000</td>
+      <td th:text="${item.registerDate}">2024-06-07 18:25:51</td>
+    </tr>
+    </tbody>
+  </table>
+</body>
+</html>

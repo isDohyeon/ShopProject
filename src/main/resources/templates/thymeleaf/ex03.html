@@ -1,11 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="ko" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<h1>상품 리스트 출력 예제</h1>
 <!-- 반복문을 어떻게 표현하는지 - th:each 속성 사용-->
-<div th:each=""></div>
+<table>
+    <thead>
+    <tr>
+        <th>순번</th>
+        <th>상품명</th>
+        <th>상품설명</th>
+        <th>가격</th>
+        <th>상품등록일</th>
+    </tr>
+    </thead>
+    <tbody>
+<!--    향상된 for--문
+    for (ItemDTO item : items) {
+        itam.name
+    } -->
+    <tr th:each="item, status: ${items}">
+        <td th:text="${status.count}">0</td>
+        <td th:text="${item.name}">상품명</td>
+        <td th:text="${item.description}">상품설명</td>
+        <td th:text="${item.price}">10000</td>
+        <td th:text="${item.registerDate}">2024-06-07 18:25:51</td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

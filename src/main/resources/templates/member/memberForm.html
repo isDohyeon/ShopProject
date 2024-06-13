@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        .b-example-divider {
+            width: 100%;
+            height: 3rem;
+            background-color: rgba(0, 0, 0, .1);
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+
+        .b-example-vr {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 100vh;
+        }
+
+        .bi {
+            vertical-align: -.125em;
+            fill: currentColor;
+        }
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden;
+        }
+
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .btn-bd-primary {
+            --bd-violet-bg: #712cf9;
+            --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+            --bs-btn-font-weight: 600;
+            --bs-btn-color: var(--bs-white);
+            --bs-btn-bg: var(--bd-violet-bg);
+            --bs-btn-border-color: var(--bd-violet-bg);
+            --bs-btn-hover-color: var(--bs-white);
+            --bs-btn-hover-bg: #6528e0;
+            --bs-btn-hover-border-color: #6528e0;
+            --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+            --bs-btn-active-color: var(--bs-btn-hover-color);
+            --bs-btn-active-bg: #5a23c8;
+            --bs-btn-active-border-color: #5a23c8;
+        }
+
+        .bd-mode-toggle {
+            z-index: 1500;
+        }
+
+        .bd-mode-toggle .dropdown-menu .active .bi {
+            display: block !important;
+        }
+    </style>
+    <link rel="stylesheet" href="/css/product.css">
+</head>
+<body>
+
+<header th:replace="~{fragments/header::header}"></header>
+<main class="container">
+    <form th:action="@{/members/new}" th:method="post" th:object="${memberForm}">
+        <div class="form-floating my-3">
+            <input type="text" class="form-control" id="name" name="name" placeholder="홍길동">
+            <label for="name">이름을 입력해주세요.</label>
+            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">이름 에러</p>
+        </div>
+        <div class="form-floating my-3">
+            <input type="email" class="form-control" id="email" name="email" placeholder="hong@gmail.com">
+            <label for="email">이메일을 입력해주세요.</label>
+            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger">이메일 에러</p>
+        </div>
+        <div class="form-floating my-3">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            <label for="password">패스워드를 입력해주세요.</label>
+            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger">패스워드 에러</p>
+        </div>
+        <div class="form-floating my-3">
+            <input type="text" class="form-control" id="address" name="address" placeholder="address">
+            <label for="address">주소를 입력해주세요.</label>
+            <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="text-danger">패스워드 에러</p>
+        </div>
+        <div class="row my-3">
+            <div class="col d-grid">
+                <button type="submit" class="btn btn-primary">회원 가입</button>
+            </div>
+        </div>
+    </form>
+</main>
+<footer th:replace="~{fragments/footer::footer}"></footer>
+<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

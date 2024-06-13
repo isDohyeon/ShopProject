@@ -1,0 +1,28 @@
+GET http://localhost:8080/api/items
+
+###
+GET http://localhost:8080/api/items
+
+###
+POST http://localhost:8080/api/items
+Content-Type: application/json
+
+{
+"name": "상품 테스트2",
+"price": 10001,
+"quantity": 101,
+"description": "상품 테스트 상세 설명",
+"status": "판매중"
+}
+
+### 상품 수정
+PUT http://localhost:8080/api/items/1
+Content-Type: application/json
+
+{
+  "name": "샌드위치",
+  "price": 5000,
+  "quantity": 1000,
+  "description": "배고픔을 달래주는 맛있는 샌드위치",
+  "status": "판매중"
+}

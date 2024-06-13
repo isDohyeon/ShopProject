@@ -1,86 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="https://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1"> <!--모바일에 맞게 설정-->
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Home</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
   <style>
-    .container {
-      max-width: 960px;
-    }
-
-    .icon-link > .bi {
-      width: .75em;
-      height: .75em;
-    }
-
-    /*
-     * Custom translucent site header
-     */
-
-    .site-header {
-      background-color: rgba(0, 0, 0, .85);
-      -webkit-backdrop-filter: saturate(180%) blur(20px);
-      backdrop-filter: saturate(180%) blur(20px);
-    }
-    .site-header a {
-      color: #8e8e8e;
-      transition: color .15s ease-in-out;
-    }
-    .site-header a:hover {
-      color: #fff;
-      text-decoration: none;
-    }
-
-    /*
-     * Dummy devices (replace them with your own or something else entirely!)
-     */
-
-    .product-device {
-      position: absolute;
-      right: 10%;
-      bottom: -30%;
-      width: 300px;
-      height: 540px;
-      background-color: #333;
-      border-radius: 21px;
-      transform: rotate(30deg);
-    }
-
-    .product-device::before {
-      position: absolute;
-      top: 10%;
-      right: 10px;
-      bottom: 10%;
-      left: 10px;
-      content: "";
-      background-color: rgba(255, 255, 255, .1);
-      border-radius: 5px;
-    }
-
-    .product-device-2 {
-      top: -25%;
-      right: auto;
-      bottom: 0;
-      left: 5%;
-      background-color: #e5e5e5;
-    }
-
-
-    /*
-     * Extra utilities
-     */
-
-    .flex-equal > * {
-      flex: 1;
-    }
-    @media (min-width: 768px) {
-      .flex-md-equal > * {
-        flex: 1;
-      }
-    }
     .bd-placeholder-img {
       font-size: 1.125rem;
       text-anchor: middle;
@@ -157,24 +82,23 @@
     .bd-mode-toggle .dropdown-menu .active .bi {
       display: block !important;
     }
-
   </style>
   <link rel="stylesheet" href="/css/sign-in.css">
 </head>
 <body>
-<header th:replace="~{fragments/header::header}"></header>
 
+<header th:replace="~{fragments/header::header}"></header>
 <main class="form-signin w-100 m-auto">
-  <form>
+  <form th:action="@{/login}" th:method="post">
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
     <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-      <label for="floatingInput">Email address</label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+      <label for="email">Email address</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-      <label for="floatingPassword">Password</label>
+      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+      <label for="password">Password</label>
     </div>
 
     <div class="form-check text-start my-3">
@@ -187,12 +111,7 @@
     <p class="mt-5 mb-3 text-body-secondary">© 2017–2024</p>
   </form>
 </main>
-
-<footer th:replace="~{fragments/footer::footer}">
-</footer>
+<footer th:replace="~{fragments/footer::footer}"></footer>
 <script src="/js/bootstrap.bundle.min.js"></script>
-
-
-
 </body>
 </html>
